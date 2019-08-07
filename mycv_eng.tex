@@ -1,0 +1,179 @@
+\documentclass[6pt]{article}
+
+\usepackage[margin=0.5cm]{geometry}
+\usepackage{array, xcolor}
+\usepackage{enumitem}
+\setlist{nosep}
+\definecolor{lightgray}{gray}{0.8}
+\newcolumntype{L}{>{\raggedleft}p{0.14\textwidth}}
+\newcolumntype{R}{p{0.8\textwidth}}
+\newcommand\VRule{\color{lightgray}\vrule width 0.5pt}
+\newcommand\HRule{\color{lightgray}\hrule width 0.5pt}
+
+
+\usepackage{tikz} % Required for creating the plots
+\usetikzlibrary{shapes, backgrounds}
+\tikzset{x=1cm, y=1cm} % Default tikz units
+
+% Command to vertically centre adjacent content
+\newcommand{\vcenteredhbox}[1]{% The only parameter is for the content to centre
+	\begingroup%
+		\setbox0=\hbox{#1}\parbox{\wd0}{\box0}%
+	\endgroup%
+}
+
+\newcounter{barcount}
+
+% Environment to hold a new bar chart
+\newenvironment{barchart}[1]{ % The only parameter is the maximum bar width, in cm
+	\newcommand{\barwidth}{0.35}
+	\newcommand{\barsep}{0.2}
+	
+	% Command to add a bar to the bar chart
+	\newcommand{\baritem}[2]{ % The first argument is the bar label and the second is the percentage the current bar should take up of the total width
+		\pgfmathparse{##2}
+		\let\perc\pgfmathresult
+		
+		\pgfmathparse{#1}
+		\let\barsize\pgfmathresult
+		
+		\pgfmathparse{\barsize*##2/100}
+		\let\barone\pgfmathresult
+		
+		\pgfmathparse{(\barwidth*\thebarcount)+(\barsep*\thebarcount)}
+		\let\barx\pgfmathresult
+		
+		\filldraw[fill=black, draw=none] (0,-\barx) rectangle (\barone,-\barx-\barwidth);
+		
+		\node [label=180:\colorbox{black}{\textcolor{white}{##1}}] at (0,-\barx-0.175) {};
+		\addtocounter{barcount}{1}
+	}
+	\begin{tikzpicture}
+		\setcounter{barcount}{0}
+}{
+	\end{tikzpicture}
+}
+
+
+\title{\vspace{-3ex}\bfseries\Huge Thomas Louis - Data scientist\vspace{-3ex}}
+\date{}
+%\author{thomas.louis.pro@gmail.com}
+
+\begin{document}
+\begingroup
+\let\center\flushleft
+\let\endcenter\endflushleft
+\maketitle
+\endgroup
+\begin{minipage}[ht]{0.48\textwidth}
++336.22.84.85.15
+\end{minipage}
+\begin{minipage}[ht]{0.48\textwidth}
+thomas.louis.pro@gmail.com
+\end{minipage}
+\section*{Professional Experience}
+\begin{tabular}{L!{\VRule}R}
+06-2018--present&\textbf{Data Scientist, Finastra, Paris}\\
+	&Finastra is a world class financial software editor leader. I am working inside Trade \& Capital Market department in the innovation team on several projects aiming at adding artificial intelligence based functionalities into trading softwares
+	\begin{itemize}
+		\item I was manly in charge of developping, maintaining and improving Fusion Detect product: 
+			\begin{itemize}
+		              \item R\&D on classification problem and model explaination for Fusion Detect product
+		              \item R\&D on hyperparameter optimization for Fusion Detect product 
+		              \item R\&D on Timeseries Analysis based on Deep learning and statistical methods for Fusion Detect product
+		              \item Benchmarking our algorithms on new datasets 
+			\end{itemize}
+		\item I have worked on an innovation project which aims at modeling market by solving stochastic differential equations with Deep learning
+		\item I contributed in an internal hackathon to develop a generative model of artificial data
+	\end{itemize}
+\\[5pt]
+09-2015--06-2018&\textbf{Data Scientist Consultant, Amadeus, Sophia Antipolis}\\
+&Amadeus is the world leader software solution provider for the travel industry. It provides among other things a search engine for flight recommandation 
+\begin{itemize}
+	\item I have developed a predictive model of user choice among a set of recommandation for business trips in an innovation project.
+	\item I have studied the companies' loss due to employees late booking timing.
+	\item I have developed big data applications and data product
+		\begin{itemize}
+			\item the goal is to create advanced BI tools able to work on terabytes to allow travel agencies and airlines to get information about new tendencies for the flight demand.
+			\item I have developped and benchmarked the data pipeline with spark and used elasticsearch as a search engine
+			\item I used data mining technics to detect robotic/artificial trafic
+			\item I used advanced sampling technics in order to reduce the response time while keeping a relevant response quality
+		\end{itemize}
+	\item I have made on demand statistical analysis for different projects on small and big datasets (up to 10 To)
+\end{itemize}
+
+\\[5pt]
+03-2015--08-2015&\textbf{Data Scientist Intern, Isoft, Ile de France}\\
+&Isoft is software company that develop operational research and statistical software. It is also a leader on the french market for fraud detection on e-banking. My internship was intitled 'Fraud detection and graph clustering'. 
+\begin{itemize}
+	\item I have read litterature on graph clustering technics and application. I have written a state of the art on this subject.
+	\item I have designed and implemented graph theory based algorithms (clustering, artificial graph generation, bi-graph projection)
+	\item I have developed and benchmarked a machine learning pipeline using graph clustering and classification technics
+	\item I have made a statistical analysis over the prediction of this machine learning pipeline on real anonymized data
+\end{itemize}
+\end{tabular}
+\\[5pt]
+\begin{tabular}{L!{\VRule}R}
+%\\[5pt]
+%10-2014--03-2015&\textbf{Final year project/Master thesis, Morpho (Safran)}\\
+%&Study about Android Lollipop security
+%\begin{itemize}
+%	\item I have read litterature about OS'specific vulnerabilities 
+%	\item I have implemented a proof of concept of one of those attack 
+%	\item I have written a study about the Trusted Execution Environment 
+%	\item I have benchmarked the facial recognition algorithm of Android 
+%\end{itemize}
+%\\
+\\[5pt]
+05-2014--08-2014&\textbf{Research Engineer Intern, Biometry, Lucerne - Suisse}\\
+&Facial Recognition on smartphone for e-banking application
+\begin{itemize}
+	\item I have read the state of the art of facial recognition technics
+	\item I implemented facial recognition algorithm on Android
+	\item I have implemented a proof of concept of strong authentication on cloud
+\end{itemize}
+\end{tabular}
+
+\section*{Education}
+\begin{tabular}{L!{\VRule}R}
+2012--2015&{\bf Engineer Diploma, ENSICAEN.}\\[5pt]
+2013--2015&{\bf MsC in Cyber Security}, Universit\'{e} de Basse-Normandie.\\[5pt]
+2016&Machine Learning Ceritification, Coursera/Stanford\\[5pt]
+2017&Deep Learning Ceritification, Coursera/Stanford\\
+\end{tabular}
+
+\section*{Technologies and Skills}
+\hfill % Whitespace between
+\begin{minipage}[t]{0.9\textwidth} % 10% of the page for the skills bar chart
+	\vspace{-\baselineskip} % Required for vertically aligning minipages
+	\begin{barchart}{10.5}
+		\baritem{Python}{95}
+		\baritem{Machine Learning}{90}
+		\baritem{Deep Learning}{90}
+		\baritem{Statistics}{80}
+		\baritem{Applied Mathematics}{80}
+		\baritem{Spark}{70}
+		\baritem{Elasticsearch}{65}
+		\baritem{Docker}{30}
+		\baritem{C++}{15}
+		\baritem{Rust}{10}
+	\end{barchart}
+\end{minipage}\\
+\textbf{Other Skills:}\\
+Git, Tensorflow/Keras, scikit-learn, Hive, Hadoop, Bash, Linux, Computer Vision, Biometrics, SQL 
+\section*{Languages}
+\begin{tabular}{L!{\VRule}R}
+French&Native language\\
+English&Fluent\\
+\end{tabular}
+
+\section*{Miscellaneous}
+\begin{itemize}
+	\item Thai Boxing / Ski / Surf
+	\item Driving License 
+	\item First Aid Diploma 
+\end{itemize}
+
+
+
+\end{document}
